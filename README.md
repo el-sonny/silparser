@@ -131,4 +131,42 @@ Ejemplo :
 		"UrlFoto": "http://sil.gobernacion.gob.mx/Archivos/Fotos/6911048.jpg"
 	}
 ]
-```js
+```
+#Ejemplo de uso en GO
+```go
+package main
+
+import (
+  "encoding/json"
+  "fmt"
+  "github.com/tugorez/silscraper"
+  "io/ioutil"
+  "log"
+)
+
+func main() {
+  var docs []silscraper.LegislatorProfile
+ 
+  //seleciona un rango de ids para buscar y descargar perfiles
+  idfrom:=6911048
+  idto:=6911149
+  for i := idfrom; i < idto; i++ {
+    profile, err := silscraper.ScrapLegislatorById(i)
+    if err != nil {
+      log.Fatal(fmt.Sprintf("getting the doc %d", i))
+    }
+    if profile.Nombre == "" {
+      continue
+    }
+    docs = append(docs, profile)
+  }
+  //
+  file, err := json.MarshalIndent(docs, "", "\t")
+  if err != nil {
+    log.Fatal(err)
+  }
+  ioutil.WriteFile("testall.json", file, 0644)
+
+}
+```
+
