@@ -4,6 +4,7 @@ silparser genera un json con la info del profile
 tomado de http://sil.gobernacion.gob.mx/Librerias/pp_PerfilLegislador.php?SID=\u0026Referencia=6911048
 
 Ejemplo :
+```js
 [
 	{
 		"Nombre": "Borge Angulo, Roberto",
@@ -130,3 +131,4 @@ Ejemplo :
 		"UrlFoto": "http://sil.gobernacion.gob.mx/Archivos/Fotos/6911048.jpg"
 	}
 ]
+```js
